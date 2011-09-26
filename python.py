@@ -14,11 +14,19 @@ form = """
 class python(webapp.RequestHandler):
 
 
+    def serve_home(self):
+        
+        for pid in python_problems.problems:
+            self.response.out.write("<a href=/python/%s>%s %s</a>"%(str(pid),str(pid),python_problems.problems[pid].short_intro()))
+            self.response.out.write(" ")
+            self.response.out.write("<br>")
+
     def get(self, problem_id):
         
         if (problem_id == ''):
-            self.response.out.write('Hi. Go to python/1 or python/2')
+            self.serve_home()
             return
+            
         self.response.out.write('<html><body>Problem: <br> <br>')
         self.response.out.write(python_problems.problems[int(problem_id)].intro)
         self.response.out.write('<p />')

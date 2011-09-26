@@ -4,6 +4,9 @@ class Problem:
     def __init__(self,intro,test):
         self.intro=intro
         self.test =test
+    def short_intro(self):
+        return self.intro.split('\n')[0].replace('</a>','').replace('a href','nop')
+    
 
 problems = {}
 problems[1] = Problem(intro='Write a function fact(n) that calculates the factorial of n.',test= """
