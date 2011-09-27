@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../css/link.css" />
+    </head> 
+
+    <body>Problem: <br> <br>
+        {{intro|safe}}
+        <p />
+        <form action="/python/{{id}}" method="post">
+            <div><textarea name="exec" rows="10" cols="60">{{code}}</textarea></div>
+            <div><input type="submit" value="submit"></div>
+        </form>
+    </body>
+</html>

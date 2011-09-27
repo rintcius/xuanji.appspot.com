@@ -29,14 +29,15 @@ class python(webapp.RequestHandler):
     def get(self, problem_id):
         
         if (problem_id == ''):
-            self.serve_home()
-            return
-            
-        self.response.out.write('<html><body>Problem: <br> <br>')
-        self.response.out.write(python_problems.problems[int(problem_id)].intro)
-        self.response.out.write('<p />')
-        self.response.out.write(form%(problem_id,""))
-        self.response.out.write('</html></body>')
+            return self.serve_home()
+                
+        template_values = {
+            'intro': python_problems.problems[int(problem_id)].intro,
+            'id': problem_id,
+            'code': ""
+        }
+        path = os.path.join(os.path.dirname(__file__), 'problem.html')
+        self.response.out.write(template.render(path, template_values))
           
     def post(self, problem_id):
         
