@@ -1,0 +1,16 @@
+<style type="text/css">
+A:link {text-decoration: none; color:blue}
+A:visited {text-decoration: none; color:blue}
+A:hover {text-decoration: underline; color: blue;}
+</style>
+
+<html>
+    <body>
+    Python - all problems <br />
+    {% for pid, problem in problems.items %}
+        {{pid}}
+        <a href=/python/{{pid}}>{{problem.short_intro}}</a>
+        <br />
+    {% endfor %}
+    </body>
+</html>
