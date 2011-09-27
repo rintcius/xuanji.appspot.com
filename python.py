@@ -1,8 +1,11 @@
 import cgi
+import os
 
 from google.appengine.api import users
 from google.appengine.ext import webapp
 import python_problems
+
+from google.appengine.ext.webapp import template
 
 form = """
               <form action="/python/%s" method="post">
@@ -16,10 +19,12 @@ class python(webapp.RequestHandler):
 
     def serve_home(self):
         
-        for pid in python_problems.problems:
-            self.response.out.write("<a href=/python/%s>%s %s</a>"%(str(pid),str(pid),python_problems.problems[pid].short_intro()))
-            self.response.out.write(" ")
-            self.response.out.write("<br>")
+        template_values = {
+            'problems':python_problems.problems
+        }
+
+        path = os.path.join(os.path.dirname(__file__), 'python.html')
+        self.response.out.write(template.render(path, template_values))
 
     def get(self, problem_id):
         
@@ -51,7 +56,9 @@ class python(webapp.RequestHandler):
 
         try:
             sys.stdout = self.response.out
-            exec(exec_stmt+python_problems.problems[int(problem_id)].test,{})
+            closure = {}
+            exec exec_stmt in closure
+            python_problems.problems[int(problem_id)].test(closure)
         except AssertionError:
             passed = False 
         finally:

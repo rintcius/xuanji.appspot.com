@@ -1,4 +1,10 @@
 import cgi
+import os
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+
+from google.appengine.dist import use_library
+use_library('django', '1.2')
 
 from google.appengine.api import users
 from google.appengine.ext import webapp
@@ -7,15 +13,13 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from interp import lis, bf
 from python import python
 
+from google.appengine.ext.webapp import template
+
 class MainPage(webapp.RequestHandler):
     def get(self):
-        self.response.out.write("""
-          Hello.
-          <br />
-          <a href=lispy>lispy</a>
-          <a href=python>python</a>
-          
-          """)
+        path = os.path.join(os.path.dirname(__file__), 'index.html')
+        self.response.out.write(template.render(path, {}))
+
 
 class lispy(webapp.RequestHandler):
 
@@ -44,7 +48,6 @@ application = webapp.WSGIApplication(
                                       ('/lispy', lispy),
                                       ('/python/(.*)', python)],
                                      debug=True)
-
 
 def main():
     run_wsgi_app(application)
