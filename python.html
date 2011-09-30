@@ -5,7 +5,6 @@
     <body>
     Python - all problems <p />
     {% for pid, problem in problems.items %}
-        {{pid}}.
         <a href=/python/{{pid}}>{{problem.short_intro}}</a>
         <br />
     {% endfor %}
