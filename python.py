@@ -3,12 +3,12 @@ import os
 
 from google.appengine.api import users
 from google.appengine.ext import webapp
-import python_problems
+from python_problems import get_problems_in_pset
 
 from google.appengine.ext.webapp import template
 
 form = """
-              <form action="/python/%s" method="post">
+              <form action="/python/%s/%s" method="post">
                 <div><textarea name="exec" rows="10" cols="60">%s</textarea></div>
                 <div><input type="submit" value="submit"></div>
               </form>
@@ -17,10 +17,11 @@ form = """
 class python(webapp.RequestHandler):
 
 
-    def serve_home(self):
+    def serve_home(self, pset_name):
         
         template_values = {
-            'problems':python_problems.problems
+            'pset_name':pset_name,
+            'problems':get_problems_in_pset(pset_name)
         }
 
         path = os.path.join(os.path.dirname(__file__), 'python.html')
@@ -28,18 +29,40 @@ class python(webapp.RequestHandler):
 
     def get(self, problem_id):
         
-        if (problem_id == ''):
-            return self.serve_home()
+        parsed_id = problem_id.split('/')
+
+        if problem_id == '':
+            return #todo
+
+        pset_name = parsed_id[0]
                 
+        if len(parsed_id) == 1:
+            return self.serve_home(pset_name)
+        
+        problem_id = int(parsed_id[1])
+        
+        #now rendering a problem
+        
         template_values = {
-            'intro': python_problems.problems[int(problem_id)].intro,
+            'intro': get_problems_in_pset(pset_name)[problem_id].intro,
             'id': problem_id,
+            'pset_name': pset_name,
             'code': ""
         }
         path = os.path.join(os.path.dirname(__file__), 'problem.html')
         self.response.out.write(template.render(path, template_values))
           
     def post(self, problem_id):
+        
+        parsed_id = problem_id.split('/')
+
+        if len(parsed_id) != 2:
+            print parsed_id
+            return
+        
+        pset_name = parsed_id[0]
+        problem_id = int(parsed_id[1])
+        
         
         passed = True
         
@@ -59,7 +82,7 @@ class python(webapp.RequestHandler):
             sys.stdout = self.response.out
             closure = {}
             exec exec_stmt in closure
-            python_problems.problems[int(problem_id)].test(closure)
+            get_problems_in_pset(pset_name)[problem_id].test(closure)
         except AssertionError:
             passed = False 
         finally:
@@ -72,5 +95,5 @@ class python(webapp.RequestHandler):
             self.response.out.write('<p style="color:red">failed</p>')
                         
         self.response.out.write('</pre></body></html>')
-        self.response.out.write(form % (problem_id, exec_stmt))
+        self.response.out.write(form % (pset_name, problem_id, exec_stmt))
 

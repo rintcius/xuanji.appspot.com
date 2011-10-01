@@ -1,24 +1,6 @@
-import cgi
-
-class Problem:
-    def __init__(self,intro,test):
-        self.intro=intro
-        self.test =test
-    def __repr__(self):
-        return "hello"
-    def short_intro(self):
-        return self.intro.split('\n')[0].replace('</a>','')
-    
+from Problem import *    
 
 problems = {}
-
-def test1(closure):
-    def f(n):
-      if (n == 0): return 1
-      else: return n * f(n-1)
-    for i in range(10):
-      assert(closure['fact'](i) == f(i))
-problems[1] = Problem(intro='Write a function fact(n) that calculates the factorial of n.',test=test1)
 
 def test2(closure):
     laser=closure['laser']
