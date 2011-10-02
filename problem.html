@@ -3,12 +3,35 @@
         <link rel="stylesheet" type="text/css" href="../css/link.css" />
     </head> 
 
-    <body>Problem: <br> <br>
-        {{intro|safe}}
-        <p />
-        <form action="/python/{{pset_name}}/{{id}}" method="post">
-            <div><textarea name="exec" rows="10" cols="60">{{code}}</textarea></div>
-            <div><input type="submit" value="submit"></div>
-        </form>
+    <body>
+    
+Problem:
+<p /> {{intro|safe}} <p />
+        
+{% if code %}
+<pre>
+{{code}}
+</pre>
+{% endif %}
+        
+{% if print %}
+    <p style="color:blue">
+    {{print}}
+    </p>
+{% endif %}
+
+        
+{% if passed == "yes" %}
+    <p style="color:green">passed all tests</p>
+{% endif %}
+{% if passed == "no" %}
+    <p style="color:red">failed</p>
+{% endif %}
+        
+<form action="/python/{{pset_name}}/{{id}}" method="post">
+    <div><textarea name="exec" rows="10" cols="60">{{code}}</textarea></div>
+    <div><input type="submit" value="submit"></div>
+</form>
+
     </body>
 </html>

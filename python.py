@@ -17,27 +17,27 @@ form = """
 class python(webapp.RequestHandler):
 
 
-    def serve_home(self, pset_name):
+    def show_pset(self, pset_name):
         
         template_values = {
             'pset_name':pset_name,
             'problems':get_problems_in_pset(pset_name)
         }
 
-        path = os.path.join(os.path.dirname(__file__), 'python.html')
+        path = os.path.join(os.path.dirname(__file__), 'pset.html')
         self.response.out.write(template.render(path, template_values))
 
     def get(self, problem_id):
         
-        parsed_id = problem_id.split('/')
-
         if problem_id == '':
             return #todo
+        
+        parsed_id = problem_id.split('/')
 
         pset_name = parsed_id[0]
                 
         if len(parsed_id) == 1:
-            return self.serve_home(pset_name)
+            return self.show_pset(pset_name)
         
         problem_id = int(parsed_id[1])
         
@@ -55,31 +55,28 @@ class python(webapp.RequestHandler):
     def post(self, problem_id):
         
         parsed_id = problem_id.split('/')
-
-        if len(parsed_id) != 2:
-            print parsed_id
-            return
         
         pset_name = parsed_id[0]
         problem_id = int(parsed_id[1])
-        
         
         passed = True
         
         exec_stmt = self.request.get('exec')
         exec_stmt = exec_stmt.replace('\r\n', '\n')
-
-        self.response.out.write('Output:<pre>')
-
-        self.response.out.write(cgi.escape(exec_stmt + '\n'))
-        
-        self.response.out.write('<p style="color:blue">')
-        
+                
         import sys
         out = sys.stdout
 
+        class WriteLog:
+            def __init__(self):
+                self.content = ""
+            def write(self, string):
+                self.content += string
+
+        wo = WriteLog()
+
         try:
-            sys.stdout = self.response.out
+            sys.stdout = wo
             closure = {}
             exec exec_stmt in closure
             get_problems_in_pset(pset_name)[problem_id].test(closure)
@@ -90,10 +87,19 @@ class python(webapp.RequestHandler):
 
 
         if passed:
-            self.response.out.write('<p style="color:green">passed all tests</p>')
+            passed_msg = "yes"
         else:
-            self.response.out.write('<p style="color:red">failed</p>')
-                        
-        self.response.out.write('</pre></body></html>')
-        self.response.out.write(form % (pset_name, problem_id, exec_stmt))
+            passed_msg = "no"
+                                
+        template_values = {
+            'intro': get_problems_in_pset(pset_name)[problem_id].intro,
+            'id': problem_id,
+            'pset_name': pset_name,
+            'code': exec_stmt,
+            'passed': passed_msg,
+            'print': wo.content
+        }
+        path = os.path.join(os.path.dirname(__file__), 'problem.html')
+        self.response.out.write(template.render(path, template_values))
+
 
