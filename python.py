@@ -41,13 +41,10 @@ class python(webapp.RequestHandler):
         
         if problem_id == '':
             return self.show_home()
-                
         if (problem_id[-1] == '/'):
             return self.redirect('/python' + problem_id[:-1])
-        
-        problem_id = problem_id[1:]
-        
-        parsed_id = problem_id.split('/')
+                
+        parsed_id = problem_id[1:].split('/')
 
         pset_name = parsed_id[0]
                 

@@ -1,4 +1,4 @@
-pset_list = {'others', 'golf', 'mit'}
+pset_list = ['others', 'golf', 'mit']
 
 def get_problems_in_pset(pset):
     if (pset == 'others'):
