@@ -17,6 +17,16 @@ form = """
 class python(webapp.RequestHandler):
 
 
+    def show_home(self):
+        from python_problems import pset_list
+        
+        template_values = {
+            'pset_list': pset_list
+        }
+        
+        path = os.path.join(os.path.dirname(__file__), 'python.html')
+        self.response.out.write(template.render(path, template_values))
+
     def show_pset(self, pset_name):
         
         template_values = {
@@ -30,7 +40,12 @@ class python(webapp.RequestHandler):
     def get(self, problem_id):
         
         if problem_id == '':
-            return #todo
+            return self.show_home()
+                
+        if (problem_id[-1] == '/'):
+            return self.redirect('/python' + problem_id[:-1])
+        
+        problem_id = problem_id[1:]
         
         parsed_id = problem_id.split('/')
 
@@ -54,6 +69,12 @@ class python(webapp.RequestHandler):
           
     def post(self, problem_id):
         
+        problem_id = problem_id[1:]
+        
+        if (problem_id[-1] == '/'):
+            return self.redirect('/python' + problem_id[:-1])
+            #shouldn't happen because only the form posts
+            
         parsed_id = problem_id.split('/')
         
         pset_name = parsed_id[0]

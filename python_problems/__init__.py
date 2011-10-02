@@ -1,9 +1,12 @@
-pset_list = {'a', 'b'}
+pset_list = {'others', 'golf', 'mit'}
 
 def get_problems_in_pset(pset):
-    if (pset == 'a'):
+    if (pset == 'others'):
         from python_problems import problems
         return problems
-    if (pset == 'b'):
-        from more_problems import problems
+    if (pset == 'golf'):
+        from golf import problems
+        return problems
+    if (pset == 'mit'):
+        from mit import problems
         return problems

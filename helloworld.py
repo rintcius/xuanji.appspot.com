@@ -46,8 +46,8 @@ class lispy(webapp.RequestHandler):
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/lispy', lispy),
-                                      ('/python/(.*)', python)],
-                                     debug=True)
+                                      ('/python(.*)', python)],
+                                      debug=True)
 
 def main():
     run_wsgi_app(application)
