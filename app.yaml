@@ -4,8 +4,11 @@ runtime: python
 api_version: 1
 
 handlers:
+- url: /python/css
+  static_dir: css
+  
 - url: /css
   static_dir: css
 
 - url: /.*
-  script: helloworld.py  
+  script: helloworld.py

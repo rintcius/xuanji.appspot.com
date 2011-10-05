@@ -56,7 +56,7 @@ class python(webapp.RequestHandler):
         #now rendering a problem
         
         template_values = {
-            'intro': get_problems_in_pset(pset_name)[problem_id].intro,
+            'intro': get_problems_in_pset(pset_name)[problem_id].intro.replace('\n', '<br>\n'),
             'id': problem_id,
             'pset_name': pset_name,
             'code': ""
@@ -110,7 +110,7 @@ class python(webapp.RequestHandler):
             passed_msg = "no"
                                 
         template_values = {
-            'intro': get_problems_in_pset(pset_name)[problem_id].intro,
+            'intro': get_problems_in_pset(pset_name)[problem_id].intro.replace('\n', '<br>\n'),
             'id': problem_id,
             'pset_name': pset_name,
             'code': exec_stmt,

@@ -5,4 +5,7 @@ class Problem:
     def __repr__(self):
         return "hello"
     def short_intro(self):
-        return self.intro.split('\n')[0].replace('</a>','')
+        short_enough = self.intro.split('\n')[0].replace('</a>','')
+        if len(short_enough) > 150:
+            short_enough = short_enough[0:120] + "..."
+        return short_enough
