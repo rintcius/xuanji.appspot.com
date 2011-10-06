@@ -59,7 +59,7 @@ class python(webapp.RequestHandler):
             'intro': get_problems_in_pset(pset_name)[problem_id].intro.replace('\n', '<br>\n'),
             'id': problem_id,
             'pset_name': pset_name,
-            'code': ""
+            'code': get_problems_in_pset(pset_name)[problem_id].init
         }
         path = os.path.join(os.path.dirname(__file__), 'problem.html')
         self.response.out.write(template.render(path, template_values))

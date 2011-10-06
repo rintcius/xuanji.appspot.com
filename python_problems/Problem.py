@@ -1,7 +1,8 @@
 class Problem:
-    def __init__(self,intro,test):
+    def __init__(self,intro,test,init=""):
         self.intro=intro
-        self.test =test
+        self.test=test
+        self.init=init
     def __repr__(self):
         return "hello"
     def short_intro(self):

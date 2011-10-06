@@ -1,4 +1,4 @@
-pset_list = ['others', 'golf', 'mit']
+pset_list = ['others', 'golf', 'mit-6.00-pset-1', 'mit-6.00-pset-2']
 
 def get_problems_in_pset(pset):
     if (pset == 'others'):
@@ -7,6 +7,9 @@ def get_problems_in_pset(pset):
     if (pset == 'golf'):
         from golf import problems
         return problems
-    if (pset == 'mit'):
-        from mit import problems
-        return problems
+    if (pset == 'mit-6.00-pset-1'):
+        from mit import problems_1
+        return problems_1
+    if (pset == 'mit-6.00-pset-2'):
+        from mit import problems_2
+        return problems_2

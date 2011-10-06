@@ -36,3 +36,4 @@ print [i / primorial(i) for i in range(2,50)]
 print [log_primorial(i) for i in range(500)]
 #print [(e**i) / primorial(i) for i in range(15)]
 
+ans = [(5,0,1),(1,5,0),(2,0,2),(1,3,1),(0,6,0),(1,1,2)]
