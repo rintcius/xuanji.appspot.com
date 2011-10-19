@@ -1,4 +1,4 @@
-pset_list = ['others', 'golf', 'mit-6.00-pset-1', 'mit-6.00-pset-2']
+pset_list = ['mit-6.00-pset-1', 'mit-6.00-pset-2','golf','others']
 
 def get_problems_in_pset(pset):
     if (pset == 'others'):

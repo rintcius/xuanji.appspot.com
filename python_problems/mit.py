@@ -61,7 +61,7 @@ However, we cannot work directly with n# as it will be too large. Instead we can
 
 log n# ~ n
 
-write something to calculate log n#.""",test=test_log_primorial)
+write something to calculate log n#.""",test=test_log_primorial,init="def log_primorial(n):")
 
 problems_2 = {}
 
@@ -82,4 +82,4 @@ prove the following
 
 Theorem: If it is possible to buy x, x+1,..., x+5 sets of McNuggets, for some x, then it is possible to buy any number of McNuggets >= x, given that McNuggets come in 6, 9 and 20 packs.
 
-""",test=test_ans)
+""",test=test_ans,init="ans = [(0,0,0), (1,0,0),...]")
