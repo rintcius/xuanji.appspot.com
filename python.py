@@ -1,5 +1,6 @@
 import cgi
 import os
+from django.utils import simplejson
 
 from google.appengine.api import users
 from google.appengine.ext import webapp
@@ -53,8 +54,6 @@ class python(webapp.RequestHandler):
         
         problem_id = int(parsed_id[1])
         
-        #now rendering a problem
-        
         template_values = {
             'intro': get_problems_in_pset(pset_name)[problem_id].intro.replace('\n', '<br>\n'),
             'id': problem_id,
@@ -65,12 +64,8 @@ class python(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
           
     def post(self, problem_id):
-        
+    
         problem_id = problem_id[1:]
-        
-        if (problem_id[-1] == '/'):
-            return self.redirect('/python' + problem_id[:-1])
-            #shouldn't happen because only the form posts
             
         parsed_id = problem_id.split('/')
         
@@ -100,24 +95,21 @@ class python(webapp.RequestHandler):
             get_problems_in_pset(pset_name)[problem_id].test(closure)
         except AssertionError:
             passed = False 
+        except:
+            passed = "Error"
         finally:
             sys.stdout = out
-
-
-        if passed:
-            passed_msg = "yes"
+        
+        if wo.content:
+            self.response.out.write("<pre style='color:lightblue'>")
+            self.response.out.write(wo.content)
+            self.response.out.write("</p>")
+            
+        if passed == "Error":
+            self.response.out.write("<pre style='color:red'>error</p>")      
+        elif passed:
+            self.response.out.write("<pre style='color:lightgreen'>passed</p>")
         else:
-            passed_msg = "no"
-                                
-        template_values = {
-            'intro': get_problems_in_pset(pset_name)[problem_id].intro.replace('\n', '<br>\n'),
-            'id': problem_id,
-            'pset_name': pset_name,
-            'code': exec_stmt,
-            'passed': passed_msg,
-            'print': wo.content
-        }
-        path = os.path.join(os.path.dirname(__file__), 'problem.html')
-        self.response.out.write(template.render(path, template_values))
+            self.response.out.write("<pre style='color:red'>failed</p>")
 
 

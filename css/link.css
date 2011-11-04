@@ -5,10 +5,14 @@ body {
 
 #editor {
     position: absolute;
-    width: 500px;
+    width: 800px;
     height: 400px;
 }
 
 a:link { color: #898989; text-decoration: bold}
 a:visited { color: #898989; text-decoration: bold}
 a:active { color: #898989; text-decoration: bold}
+
+#ace_gutter-cell {
+    height:50px;
+}

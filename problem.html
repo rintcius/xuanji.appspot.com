@@ -2,27 +2,15 @@
     <head>
         <link rel="stylesheet" type="text/css" href="../css/link.css" />
         <script src="../ace/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript"src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
         <script src="../ace/mode-python.js" type="text/javascript" charset="utf-8"></script>
         <script src="../ace/theme-twilight.js" type="text/javascript" charset="utf-8"></script> 
-        <script>
-        window.onload = function() {
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/twilight");
-            var PythonMode = require("ace/mode/python").Mode;
-            editor.getSession().setMode(new PythonMode());
-        };
-        </script>
+        
     </head> 
 
     <body>
     
 <p>Problem: {{intro|safe}} </p>
-
-{% if code %}
-<pre>
-{{code}}
-</pre>
-{% endif %}
         
 {% if print %}
     <p style="color:blue">
@@ -30,17 +18,35 @@
     </p>
 {% endif %}
 
-        
-{% if passed == "yes" %}
-    <p style="color:green">passed all tests</p>
-{% endif %}
-{% if passed == "no" %}
-    <p style="color:red">failed</p>
-{% endif %}
+<input type="submit" value="hi" id="load_post" />
+<div id="result"  class="functions"> </div>
 
 <pre id="editor">
-hi
+{{code}}
 </pre>
+
+<script type="text/javascript">
+window.onload = function() {
+    var editor = ace.edit("editor");
+    var PythonMode = require("ace/mode/python").Mode;
+    
+    editor.setTheme("ace/theme/twilight");
+    editor.setShowPrintMargin(false);
+    editor.getSession().setMode(new PythonMode());
+    
+	$.ajaxSetup ({
+		cache: false
+	});
+
+	$("#load_post").click(function(){
+    	var text = editor.getSession().getValue();
+		$("#result")
+			.html("hi")
+			.load("", {exec: text});
+	});
+    
+};
+</script>
 
 <!--form action="/python/{{pset_name}}/{{id}}" method="post">
     <div><input type="submit" value="submit"></div>
