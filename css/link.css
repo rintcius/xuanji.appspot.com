@@ -7,12 +7,19 @@ body {
     position: absolute;
     width: 800px;
     height: 400px;
+    margin: 0px;
 }
+
+
 
 a:link { color: #898989; text-decoration: bold}
 a:visited { color: #898989; text-decoration: bold}
 a:active { color: #898989; text-decoration: bold}
 
-#ace_gutter-cell {
-    height:50px;
+div.ace_gutter {
+    display:none;
+}
+
+div.ace_sb {
+    display:none;
 }

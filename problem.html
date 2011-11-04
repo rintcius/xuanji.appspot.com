@@ -1,11 +1,10 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../css/link.css" />
         <script src="../ace/ace.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript"src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
         <script src="../ace/mode-python.js" type="text/javascript" charset="utf-8"></script>
         <script src="../ace/theme-twilight.js" type="text/javascript" charset="utf-8"></script> 
-        
+        <link rel="stylesheet" type="text/css" href="../css/link.css" />        
     </head> 
 
     <body>
@@ -18,7 +17,7 @@
     </p>
 {% endif %}
 
-<input type="submit" value="hi" id="load_post" />
+<input type="submit" value="execute code" id="submit_exec" />
 <div id="result"  class="functions"> </div>
 
 <pre id="editor">
@@ -32,13 +31,14 @@ window.onload = function() {
     
     editor.setTheme("ace/theme/twilight");
     editor.setShowPrintMargin(false);
+    editor.renderer.setHScrollBarAlwaysVisible(false);
     editor.getSession().setMode(new PythonMode());
     
 	$.ajaxSetup ({
 		cache: false
 	});
 
-	$("#load_post").click(function(){
+	$("#submit_exec").click(function(){
     	var text = editor.getSession().getValue();
 		$("#result")
 			.html("hi")
@@ -47,11 +47,3 @@ window.onload = function() {
     
 };
 </script>
-
-<!--form action="/python/{{pset_name}}/{{id}}" method="post">
-    <div><input type="submit" value="submit"></div>
-    <div><textarea name="exec" rows="10" cols="60" spellcheck="false">{{code}}</textarea></div>
-</form>
-
-    </body>
-</html>
