@@ -1,8 +1,8 @@
-pset_list = ['mit-6.00-pset-1', 'mit-6.00-pset-2','golf','others']
+pset_list = ['misc', 'mit-6.00-pset-1', 'mit-6.00-pset-2','golf']
 
 def get_problems_in_pset(pset):
-    if (pset == 'others'):
-        from python_problems import problems
+    if (pset == 'misc'):
+        from others import problems
         return problems
     if (pset == 'golf'):
         from golf import problems
