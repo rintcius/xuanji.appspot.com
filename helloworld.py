@@ -11,7 +11,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
 from interp import lis, bf
-from python import python
+from python_grading.python import python
 
 from google.appengine.ext.webapp import template
 
