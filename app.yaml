@@ -10,10 +10,6 @@ handlers:
 - url: /static
   static_dir: static
   
-- url: /lectures
-  static_files: leech.html
-  upload: what is this
-  
 - url: /css
   static_dir: css
   
