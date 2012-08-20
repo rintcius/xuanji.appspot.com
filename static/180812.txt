@@ -5,3 +5,5 @@ Finished Feynman's QED to try to remember again what it's like to learn. It's de
 I also went through the linear algebra notes MIT notes I had written down. They're still very helpful. Gilbert Strang is a brilliant, brilliant teacher. However if it were up to me I'd start with the geometry of linear transformations - eigenvectors and everything, and then relegate algorithms to the back.
 
 Sophia Chua has a blog.
+
+Also had a farewell dinner for LW. 
