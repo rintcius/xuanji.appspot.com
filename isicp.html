@@ -3,11 +3,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BiwaScheme REPL</title>
 <style type="text/css">
-  div#bs-repl{
-    border:1px solid black;
-    padding:1em;
-    width:100%;
-  }
   div.bs-snippet{
     white-space:pre;
     cursor:pointer;
@@ -17,6 +12,31 @@
     cursor:pointer;
     background-color:darkseagreen;
   }
+  
+  #eval {
+    cursor:pointer;
+  }
+  
+  #eval:hover {
+    background-color:darkseagreen;
+  }
+  
+  #sidebar {
+    position:fixed;
+    left:63%;
+	  width: 37%;
+	  float: right;
+	  border: 1px solid gray;
+	  padding: 2px;
+  }
+
+  #main {
+	  width: 60%;
+	  float: left;
+	  border: 1px solid gray;
+	  padding: 10px;
+  }
+
 </style>
 
 </head>
@@ -24,22 +44,17 @@
 
 <h1>Interactive SICP</h1>
 
-<div id="bs-repl">
-<table><tbody><tr><td valign="top">
+<div id="sidebar">
   <form>
     <textarea id="bs-input" rows="10" cols="60">(print "Hello, world!")</textarea><br>
-    <div style="float:right;">
-      <a href="#" onclick="bs_eval()"> eval </a>
-    </div>
+      <div id="eval" onclick="bs_eval()"> eval </div>
     <br style="clear:both">
   </form>
-  <div id="bs-console">
-  </div>
-</td>
-<td valign="top">
+  <div id="bs-console"></div>
 
+</div>
 
-<div id="bs-sample">
+<div id="main">
 
   <h2>Sample</h2>
   <div class="bs-snippet">(+ 1 2)</div><br>
