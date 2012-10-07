@@ -1,43 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="biwascheme.js"> </script>
+<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<link rel="stylesheet" type="text/css" href="isicp.css" />
 <title>BiwaScheme REPL</title>
-<style type="text/css">
-  div.bs-snippet{
-    white-space:pre;
-    cursor:pointer;
-    font-family: "Courier New";
-    font-size: 14px;
-  }
-  div.bs-snippet:hover {
-    background-color:darkseagreen;
-  }
-  
-  #eval {
-    cursor:pointer;
-  }
-  
-  #eval:hover {
-    background-color:darkseagreen;
-  }
-  
-  #sidebar {
-    position:fixed;
-    left:63%;
-	  width: 37%;
-	  float: right;
-	  border: 1px solid gray;
-	  padding: 2px;
-  }
 
-  #main {
-	  width: 60%;
-	  float: left;
-	  border: 1px solid gray;
-	  padding: 10px;
-  }
-
-</style>
 
 </head>
 <body>
@@ -45,13 +15,9 @@
 <h1>Interactive SICP</h1>
 
 <div id="sidebar">
-  <form>
-    <textarea id="bs-input" rows="10" cols="60">(print "Hello, world!")</textarea><br>
-      <div id="eval" onclick="bs_eval()"> eval </div>
-    <br style="clear:both">
-  </form>
+  <div id="editor"></div>
+  <div id="eval"> eval </div>
   <div id="bs-console"></div>
-
 </div>
 
 <div id="main">
@@ -67,8 +33,7 @@
 (lambda (self)
   (lambda (ls) 
     (if (null? ls) 0 (+ 1 (self (cdr ls))))))) 
-'(1 2 3 4 5))
-      </div><br>
+'(1 2 3 4 5))</div><br>
       <div class="bs-snippet">;; length by Y combinator (tail recursive)
 (((lambda (f)
 ((lambda (proc) (f (lambda (arg1 arg2) ((proc proc) arg1 arg2))))
@@ -76,29 +41,36 @@
 (lambda (self) 
   (lambda (ls acc) 
     (if (null? ls) acc (self (cdr ls) (+ 1 acc))))))
-'(1 2 3 4 5) 0)
-      </div><br>
+'(1 2 3 4 5) 0)</div><br>
     </div>
   </td></tr></tbody></table>
 </div>
-  
-<script type="text/javascript" src="biwascheme.js"> </script>
+
 <script type="text/javascript">
 var on_error = function(e){
   puts(e.message);
   throw(e);
 };
 var biwascheme = new BiwaScheme.Interpreter(on_error);
-function bs_eval(){
+
+var editor = ace.edit("editor");
+editor.getSession().setMode("ace/mode/clojure");
+editor.setTheme("ace/theme/dawn");
+editor.setShowPrintMargin(false);
+editor.renderer.setHScrollBarAlwaysVisible(false);
+
+$("#eval").click(function(){
   $("#bs-console").empty();
-  var str = $("#bs-input").val();
+  var str = editor.getSession().getValue();
   biwascheme.evaluate(str, function(result){
     puts(BiwaScheme.to_write(result));
   });
-}
+});
 
 $(".bs-snippet").click(function(e){
-  $("#bs-input").html($(this).html());
+  editor.setValue("");
+  editor.insert($(this).html());
+  editor.resize();
 });
 </script>
 </body>
