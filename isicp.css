@@ -1,0 +1,44 @@
+div.bs-snippet{
+  white-space:pre;
+  cursor:pointer;
+  font-family: "Courier New";
+  font-size: 14px;
+}
+div.bs-snippet:hover {
+  background-color:darkseagreen;
+}
+
+#eval {
+  cursor:pointer;
+}
+
+#eval:hover {
+  background-color:darkseagreen;
+}
+
+#sidebar {
+  position:fixed;
+  left:63%;
+  width: 37%;
+  height: 100%;
+  float: right;
+  border: 1px solid gray;
+  padding: 2px;
+}
+
+#main {
+  width: 60%;
+  float: left;
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.CodeMirror {
+  border: 1px solid #eee;
+}
+
+.CodeMirror-scroll {
+  height: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+}

@@ -3,11 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="biwascheme.js"> </script>
-<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="codemirror-compressed.js"></script>
 
+<link rel="stylesheet" type="text/css" href="codemirror.css" />
 <link rel="stylesheet" type="text/css" href="isicp.css" />
-<title>BiwaScheme REPL</title>
-
+<title>iSICP</title>
 
 </head>
 <body>
@@ -15,7 +15,7 @@
 <h1>Interactive SICP</h1>
 
 <div id="sidebar">
-  <div id="editor"></div>
+  <form><textarea id="code" name="code"></textarea></form>
   <div id="eval"> eval </div>
   <div id="bs-console"></div>
 </div>
@@ -53,24 +53,19 @@ var on_error = function(e){
 };
 var biwascheme = new BiwaScheme.Interpreter(on_error);
 
-var editor = ace.edit("editor");
-editor.getSession().setMode("ace/mode/clojure");
-editor.setTheme("ace/theme/dawn");
-editor.setShowPrintMargin(false);
-editor.renderer.setHScrollBarAlwaysVisible(false);
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+});
 
 $("#eval").click(function(){
   $("#bs-console").empty();
-  var str = editor.getSession().getValue();
+  var str = editor.getValue();
   biwascheme.evaluate(str, function(result){
     puts(BiwaScheme.to_write(result));
   });
 });
 
 $(".bs-snippet").click(function(e){
-  editor.setValue("");
-  editor.insert($(this).html());
-  editor.resize();
+  editor.setValue($(this).html());
 });
 </script>
 </body>
