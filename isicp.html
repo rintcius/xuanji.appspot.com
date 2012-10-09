@@ -1,10 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
 <head>
-<script type="text/javascript" src="biwascheme.js"> </script>
-<script type="text/javascript" src="codemirror-compressed.js"></script>
+<script src="biwascheme.js"> </script>
+<script src="codemirror-compressed.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="codemirror.css" />
 <link rel="stylesheet" type="text/css" href="isicp.css" />
+
+<script>
+function createPrompt(target) {
+  if (typeof target == "string") {
+    target = $(target);
+  }
+  code = target.text();
+  code = code.replace(/\n*$/, "").replace(/\s*\n/g, "\n");
+  target.empty();
+  f = $("<textarea>" + code + "</textarea>");
+  target.append(f);
+  CodeMirror.fromTextArea(f[0],
+    {"matchBrackets": true}
+  );
+}
+</script>
+
 <title>iSICP</title>
 </head>
 <body>
@@ -18,27 +36,33 @@
 </div id="sidebar">
 
 <div id="main">
-
 <h2>Sample</h2>
-<form onfocus='alert("hi")'><textarea class="scheme">(+ 1 2)</textarea></form>
-<form><textarea class="scheme">(not #t)</textarea></form>
-<form><textarea class="scheme">(boolean=? #t #t #t)</textarea></form>
-<form><textarea class="scheme">;; length by Y combinator 
+
+<div id="scheme-plus">(+ 2 3)</div> <script> createPrompt("#scheme-plus"); </script>
+
+<div id="scheme-boolean">(not #t)</div> <script> createPrompt("#scheme-boolean"); </script>
+
+<div id="scheme-length-y">;;; length by Y combinator 
+//createPrompt("(boolean=? #t #t #t)");
+//createPrompt("hi");
 (((lambda (f) 
   ((lambda (proc) (f (lambda (arg) ((proc proc) arg))))
    (lambda (proc) (f (lambda (arg) ((proc proc) arg))))))
-(lambda (self)
+(lambda (self)  
   (lambda (ls) 
-    (if (null? ls) 0 (+ 1 (self (cdr ls))))))) 
-'(1 2 3 4 5))</textarea></form>
-<form><textarea class="scheme">;; length by Y combinator (tail recursive)
+    (if (null? ls) 0 (+ 1 (self (cdr ls)))))))   
+'(1 2 3 4 5))));
+</div> <script> createPrompt("#scheme-length-y"); </script>
+
+<div id="scheme-length-y-tail">;; length by Y combinator (tail recursive)
 (((lambda (f)
 ((lambda (proc) (f (lambda (arg1 arg2) ((proc proc) arg1 arg2))))
    (lambda (proc) (f (lambda (arg1 arg2) ((proc proc) arg1 arg2))))))
 (lambda (self) 
   (lambda (ls acc) 
     (if (null? ls) acc (self (cdr ls) (+ 1 acc))))))
-'(1 2 3 4 5) 0)</textarea></form>
+'(1 2 3 4 5) 0)
+</div> <script> createPrompt("#scheme-length-y-tail"); </script>
 
 </div id="main">
 
@@ -61,9 +85,9 @@ $("#eval").click(function(){
 });
 
 $(".scheme").each(function(){
-  CodeMirror.fromTextArea($(this)[0], {
-    "matchBrackets": true, 
-  });
+  CodeMirror.fromTextArea($(this).find("textarea")[0],
+    {"matchBrackets": true}
+  );
 });
 
 </script>
