@@ -1,11 +1,5 @@
-div.bs-snippet{
-  white-space:pre;
-  cursor:pointer;
-  font-family: "Courier New";
-  font-size: 14px;
-}
-div.bs-snippet:hover {
-  background-color:darkseagreen;
+.scheme:hover {
+  background-color:#f8f8f8;
 }
 
 #eval {
@@ -13,7 +7,7 @@ div.bs-snippet:hover {
 }
 
 #eval:hover {
-  background-color:darkseagreen;
+  background-color:#D6F8DE;
 }
 
 #sidebar {
@@ -33,12 +27,25 @@ div.bs-snippet:hover {
   padding: 10px;
 }
 
-.CodeMirror {
-  border: 1px solid #eee;
+.CodeMirror:hover {
+  background: #f8f8f8;
+}
+
+.CodeMirror-focused {
+  background: #D2ECF7;
 }
 
 .CodeMirror-scroll {
   height: auto;
+  width: auto;
   overflow-y: hidden;
   overflow-x: auto;
+}
+
+.CodeMirror-matchingbracket {
+  background: lightblue;
+}
+
+div.CodeMirror span.CodeMirror-matchingbracket {
+    color: #869CEB; /*why can't we use .CodeMirror-matchingbracket? */
 }
