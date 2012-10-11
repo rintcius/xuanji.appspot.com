@@ -2,12 +2,9 @@
   background-color:#f8f8f8;
 }
 
-#eval {
-  cursor:pointer;
-}
-
-#eval:hover {
-  background-color:#D6F8DE;
+.output {
+  font-family: monospace;
+  padding: 0pt 4pt;
 }
 
 #sidebar {
