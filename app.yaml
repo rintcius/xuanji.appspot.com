@@ -15,6 +15,9 @@ handlers:
   
 - url: /python/ace
   static_dir: ace
+  
+- url: /isicp
+  static_dir: isicp
 
 - url: /.*
   script: index.py
