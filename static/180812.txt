@@ -1,9 +1,0 @@
-Going through old physics olympiad notes at last. Firstly, I'm shocked that I don't have anything before Year 5 - I thought I had saved pretty much all that I wrote down. Turns out to be otherwise - all my Year 3 and 4 physics O notes are nowwhere to be found. I hope it's not that important but in one sense it is. I'll never go back to that state of not knowing, never be able to feel again how it's like to learn those concepts, what misconceptions I had, what tripped me up, when was the moment of understanding. I have to rely on my memories to decide what is effective. And an experiment by some physics teacher once pointed out, this is incredibly difficult to do so accurately.
-
-Finished Feynman's QED to try to remember again what it's like to learn. It's definitely worlds better than anything else but I honestly think it could be improved. One thing that struck me was that even this condensed piece of magic is 100+ pages long. I have always looked down on length for its own sake, as exemplified by long but unenlightening notes by certain teachers, but this made me question whether brevity and clarity are mutually incompatible. 
-
-I also went through the linear algebra notes MIT notes I had written down. They're still very helpful. Gilbert Strang is a brilliant, brilliant teacher. However if it were up to me I'd start with the geometry of linear transformations - eigenvectors and everything, and then relegate algorithms to the back.
-
-Sophia Chua has a blog.
-
-Also had a farewell dinner for LW. 
