@@ -1,6 +1,6 @@
 body {
-    background-color:#333333;
-    color:#898989
+    background-color:#D8DCCE;
+    color:#321E1E
 }
 
 #editor {
@@ -10,11 +10,9 @@ body {
     margin: 0px;
 }
 
-
-
-a:link { color: #898989; text-decoration: bold}
-a:visited { color: #898989; text-decoration: bold}
-a:active { color: #898989; text-decoration: bold}
+a:link { color: #321E1E; text-decoration: bold}
+a:visited { color: #321E1E; text-decoration: bold}
+a:active { color: #321E1E; text-decoration: bold}
 
 div.ace_gutter {
     display:none;
