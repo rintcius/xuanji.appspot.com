@@ -1,3 +1,4 @@
 *.pyc
 *~
 isicp/codemirror/*
+isicp/jquery.min.js
