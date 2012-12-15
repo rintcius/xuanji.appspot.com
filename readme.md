@@ -39,12 +39,12 @@ linkEditor(_editor, _output, func) links the CodeMirror editor associated with _
 
 #### Example
 
-    &lt;div id="scheme-number"&gt;
+    <div id="scheme-number">
     486
-    &lt;/div&gt;
-    &lt;div id="scheme-number-output" class="output"&gt; &lt;/div&gt;
+    </div>
+    <div id="scheme-number-output" class="output"> </div>
 
-    &lt;script&gt;
+    <script>
     makeEditable("scheme-number");
     linkEditor("scheme-number", "scheme-number-output", function(x, y) {return evaluate(x);});
-    &lt;/script&gt;
+    </script>
