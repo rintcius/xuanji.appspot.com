@@ -27,7 +27,7 @@ Most of the magic happens in [coding.js](https://github.com/zodiac/appspot-gradi
 
 #### makeEditable
 
-makeEditable(_editor) converts the div with id _editor into a CodeMirror editor.
+makeEditable(_editor) converts the div with id _editor into a CodeMirror editor. CodeMirror emits a blur event when the editor is unfocused; we additionally emit this event when ctrl-enter is pressed.
 
 #### makeStatic
 
@@ -35,13 +35,13 @@ same as makeEditable, except editing is disabled. Used for exercises and the lik
 
 #### linkEditor
 
-linkEditor(_editor, _output, func) links the CodeMirror editor associated with _editor to a div with id _output. When CodeMirror calls its onBlur function (either focusing on the editor element and then focusing elsewhere or pressing ctrl-enter), func is called on its contents and the result printed in the output div.
+linkEditor(_editor, _output, func) links the CodeMirror editor associated with _editor to a div with id _output. When CodeMirror throws blur, func is called on its contents and the result printed in the output div.
 
 #### Example
 
 ```html
 <div id="scheme-number">
-486
+(+ 485 1)
 </div>
 <div id="scheme-number-output" class="output"> </div>
 
@@ -50,3 +50,5 @@ makeEditable("scheme-number");
 linkEditor("scheme-number", "scheme-number-output", function(x, y) {return evaluate(x);});
 </script>
 ```
+
+in this case, func calls the evaluate function (also defined in coding.js) which uses the biwascheme interpreter to evaluate the user's input.
