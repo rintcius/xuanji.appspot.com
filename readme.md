@@ -27,6 +27,24 @@ Most of the magic happens in [coding.js](https://github.com/zodiac/appspot-gradi
 
 #### makeEditable
 
-makeEditable(_editor) converts the div with the id string _editor into a CodeMirror editor
+makeEditable(_editor) converts the div with id _editor into a CodeMirror editor.
+
+#### makeStatic
+
+same as makeEditable, except editing is disabled. Used for exercises and the like where user should not be able to cheat in that way.
 
 #### linkEditor
+
+linkEditor(_editor, _output, func) links the CodeMirror editor associated with _editor to a div with id _output. When CodeMirror calls its onBlur function (either focusing on the editor element and then focusing elsewhere or pressing ctrl-enter), func is called on its contents and the result printed in the output div.
+
+#### Example
+
+    &lt;div id="scheme-number"&gt;
+    486
+    &lt;/div&gt;
+    &lt;div id="scheme-number-output" class="output"&gt; &lt;/div&gt;
+
+    &lt;script&gt;
+    makeEditable("scheme-number");
+    linkEditor("scheme-number", "scheme-number-output", function(x, y) {return evaluate(x);});
+    &lt;/script&gt;
