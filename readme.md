@@ -21,9 +21,48 @@ This project is a work-in-progress and we need your help! Help by
 - Display all code fragments that the currently focused code fragment depends on (and other [light table](http://www.chris-granger.com/2012/04/12/light-table---a-new-ide-concept/) features)
 - Display hints as to why user did not pass an exercise
 
-## Programming
+## API
 
-Most of the magic happens in [coding.js](https://github.com/zodiac/appspot-grading/tree/master/isicp/coding.js). 
+Most of the prompts in the book are defined by
+
+```html
+<div id="scheme-divide">
+(/ 10 5)
+</div>
+<script> prompt("scheme-divide"); </script>
+```
+
+the div contains the initial text. Autograded input is written as such
+
+```html
+<div class='exercise'>
+
+<p> <b> Exercise 1.2. </b>  Translate the following expression into prefix form.
+
+<p> <img src='http://upload.wikimedia.org/math/4/3/e/43e4ba3449a3038629dca7de56757cae.png'>
+<div id="scheme-ex-12-input" class='input'></div>
+
+<script> 
+makePromptingInput("scheme-ex-12-input");
+addOutput("scheme-ex-12-input");
+linkEditor("scheme-ex-12-input", "scheme-ex-12-input-output", function(x, y) {
+
+  var code = "(equal? (quote " + y + ") " + 
+      "'(/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5))))) (* 3 (- 6 2) (- 2 7))))";
+
+  if (biwascheme.evaluate(code) == true) {
+    return "<div class='right-answer'> \u2713 </div>";
+  } else {
+    return "<div class='wrong-answer'> \u2717 </div>";
+  }
+});
+</script>
+</div>
+```
+
+## Internals
+
+Most of the magic happens in [coding.js](https://github.com/zodiac/appspot-grading/tree/master/isicp/coding.js). We use the [CodeMirror](http://codemirror.net/) editor and the [BiwaScheme](http://www.biwascheme.org/) scheme interpreter.
 
 #### makeEditable
 
