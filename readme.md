@@ -26,4 +26,7 @@ This project is a work-in-progress and we need your help! Help by
 Most of the magic happens in [coding.js](https://github.com/zodiac/appspot-grading/tree/master/isicp/coding.js). 
 
 #### makeEditable
+
+makeEditable(_editor) converts the div with the id string _editor into a CodeMirror editor
+
 #### linkEditor
