@@ -20,6 +20,7 @@ This project is a work-in-progress and we need your help! Help by
 
 - Display all code fragments that the currently focused code fragment depends on (and other [light table](http://www.chris-granger.com/2012/04/12/light-table---a-new-ide-concept/) features)
 - Display hints as to why user did not pass an exercise
+- Make scheme evaluation asynchronous
 
 ## API
 
