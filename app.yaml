@@ -16,6 +16,9 @@ handlers:
 - url: /python/ace
   static_dir: ace
   
+- url: /parallel-text/
+  static_dir: parallel-text
+  
 - url: /isicp/
   static_files: isicp/index.html
   upload: isicp/index\.html
