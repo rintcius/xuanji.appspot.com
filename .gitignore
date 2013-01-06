@@ -12,7 +12,4 @@ __pycache__
 *.swp
 *.out
 
-isicp/codemirror/*
-isicp/jquery.min.js
-
 parallel-text/*

@@ -2,7 +2,7 @@
 
 [tree/master/isicp](https://github.com/zodiac/appspot-grading/tree/master/isicp)
 
-![screenshot](https://raw.github.com/zodiac/appspot-grading/master/isicp/screenshot.png)
+![screenshot](https://raw.github.com/zodiac/appspot-grading/master/isicp/images/screenshot.png)
 
 Structure and Interpretation of Computer Programs now in an interactive textbook form! 
 
