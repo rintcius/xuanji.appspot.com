@@ -20,12 +20,15 @@ class Echo(BaseHandler):
   def get(self):
     self.response.headers['Content-Type'] = 'text/plain'
     
-    self.response.write("Header\n\n")
-    self.response.write(self.request)
-    self.response.write("\n\n\n")
-    
-    self.response.write("Session\n\n")
-    self.response.write(self.session)
+    out = """Header
+
+%s
+
+Session
+
+%s"""
+
+    self.response.write(out % (self.request, self.session))
 
 config = {}
 config['webapp2_extras.sessions'] = {
