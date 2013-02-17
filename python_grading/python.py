@@ -17,7 +17,6 @@ form = """
 
 class python(webapp.RequestHandler):
 
-
     def show_home(self):
         from python_problems import pset_list
         
