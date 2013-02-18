@@ -2,8 +2,7 @@ import cgi
 import os
 from django.utils import simplejson
 
-from google.appengine.api import users
-from google.appengine.ext import webapp
+import webapp2
 from python_problems import get_problems_in_pset
 
 from google.appengine.ext.webapp import template
@@ -15,7 +14,7 @@ form = """
               </form>
 """
 
-class python(webapp.RequestHandler):
+class python(webapp2.RequestHandler):
 
     def show_home(self):
         from python_problems import pset_list

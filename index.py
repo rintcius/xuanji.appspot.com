@@ -4,6 +4,7 @@ import os
 import webapp2
 
 from google.appengine.ext.webapp import template
+from python_grading import python
 
 class MainPage(webapp2.RequestHandler):
   def get(self):
@@ -12,6 +13,6 @@ class MainPage(webapp2.RequestHandler):
 
         
 app = webapp2.WSGIApplication(
-                             [('/', MainPage)],
-                              #('/python(.*)', python)],
+                             [('/', MainPage),
+                              ('/python(.*)', python)],
                               debug=True)

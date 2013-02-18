@@ -1,24 +1,11 @@
 import os, logging
 
 import webapp2
-from webapp2_extras import sessions
+from sessions import sessions
 
 from google.appengine.api.urlfetch import fetch, GET, POST
 from urllib import urlencode
 from urlparse import parse_qs
-
-class BaseHandler(webapp2.RequestHandler):
-  def dispatch(self):
-    self.session_store = sessions.get_store(request=self.request)
-
-    try:
-      webapp2.RequestHandler.dispatch(self)
-    finally:
-      self.session_store.save_sessions(self.response)
-
-  @webapp2.cached_property
-  def session(self):
-    return self.session_store.get_session()
 
 POCKET_REQUEST_URL = "https://getpocket.com/v3/oauth/request"
 if os.environ['SERVER_SOFTWARE'].find('Development') >= 0:
@@ -27,7 +14,7 @@ else:
   BASE_URL = "xuanji.appspot.com"
 REDIRECT_URL = BASE_URL + "/echo/"
     
-class RequestTokenHandler(BaseHandler):
+class RequestTokenHandler(sessions.BaseHandler):
   def get(self):
   
     request_payload = {
@@ -45,14 +32,8 @@ class RequestTokenHandler(BaseHandler):
         
     self.redirect("https://getpocket.com/auth/authorize?request_token=%s&redirect_uri=%s" % (request_token, REDIRECT_URL ))
     
-class AccessTokenHandler(BaseHandler):
+class AccessTokenHandler(sessions.BaseHandler):
   pass
-    
-
-config = {}
-config['webapp2_extras.sessions'] = {
-    'secret_key': 'some-secret-key',
-}
 
 app = webapp2.WSGIApplication([('/pocket/request',  RequestTokenHandler)],
-                              debug=True, config=config)
+                              debug=True, config=sessions.config)

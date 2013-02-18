@@ -12,11 +12,18 @@ libraries:
   version: "2.5.1"
 
 handlers:  
+- url: /
+  static_files: index.html
+  upload: index\.html
+  
 - url: /echo/.*
   script: echo.app
   
 - url: /pocket/.*
   script: pocket.app
+  
+- url: /python/
+  script: python.app
   
 - url: /python/css
   static_dir: css
