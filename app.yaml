@@ -7,7 +7,7 @@ threadsafe: no
 libraries:
 - name: django
   version: "1.2"
-  
+
 - name: webapp2
   version: "2.5.1"
 
@@ -15,35 +15,35 @@ handlers:
 - url: /
   static_files: index.html
   upload: index\.html
-  
+
 - url: /echo/.*
   script: echo.app
-  
+
 - url: /pocket/.*
   script: pocket.app
-  
-- url: /python/
+
+- url: /python/.*
   script: python.app
-  
+
 - url: /python/css
   static_dir: css
-  
+
 - url: /static
   static_dir: static
-  
+
 - url: /css
   static_dir: css
-  
+
 - url: /python/ace
   static_dir: ace
-  
+
 - url: /parallel-text/
   static_dir: parallel-text
-  
+
 - url: /isicp/
   static_files: isicp/index.html
   upload: isicp/index\.html
-  
+
 - url: /isicp
   static_dir: isicp
 
