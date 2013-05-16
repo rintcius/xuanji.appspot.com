@@ -28,6 +28,9 @@ handlers:
 - url: /python/css
   static_dir: css
 
+- url: /libgit2-js
+  static_dir: libgit2-js
+
 - url: /static
   static_dir: static
 

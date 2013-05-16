@@ -13,4 +13,4 @@ __pycache__
 *.out
 
 parallel-text/*
-static/git/*
+libgit2-js/*
