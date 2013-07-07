@@ -11,6 +11,9 @@ libraries:
 - name: webapp2
   version: "2.5.1"
 
+- name: lxml
+  version: latest
+
 handlers:  
 - url: /
   static_files: index.html
@@ -21,6 +24,9 @@ handlers:
 
 - url: /pocket/.*
   script: pocket.app
+
+- url: /goodreads/.*
+  script: goodreads.app
 
 - url: /python/.*
   script: python.app
