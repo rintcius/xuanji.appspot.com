@@ -62,4 +62,11 @@ handlers:
 
 - url: /.*
   script: index.app
-    
+
+skip_files:
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?LICENSE
