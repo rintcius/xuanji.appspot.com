@@ -48,7 +48,7 @@ $$
 
 <div id="scheme-ex-12-input" class='input'></div>
 
-<script> 
+<script>
 makePromptingInput("scheme-ex-12-input");
 addOutput("scheme-ex-12-input");
 var editor = editorOf["scheme-ex-12-input"];
