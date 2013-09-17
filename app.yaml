@@ -37,6 +37,9 @@ handlers:
 - url: /libgit2-js
   static_dir: libgit2-js
 
+- url: /js-scheme-stk
+  static_dir: js-scheme-stk
+
 - url: /static
   static_dir: static
 

@@ -14,5 +14,6 @@ __pycache__
 
 parallel-text/*
 libgit2-js/*
+js-scheme-stk/*
 
 goodreads/DEV_KEY_SECRET
