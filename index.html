@@ -30,15 +30,17 @@ body {
     font-family: Computer Modern, Calibri;
 }
 
-a:visited { color: #321E1E; text-decoration: bold}
+a:visited { color: black;}
+a:link { color: black;}
 
 h1 {
     font-weight: normal;
+    color: black;
 }
 
 @font-face {
     font-family: "Computer Modern";
-    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+    src: url('/static/cmunss.otf');
 }
 
 </style>
@@ -50,7 +52,7 @@ h1 {
 <ul style="list-style-type:none">
 
 <li class="skill-item">
-    <div style="float:left; margin-right: 2em"> 
+    <div style="float:left; margin-right: 2em; margin-left: 1.5em"> 
         <img src="/isicp/images/zoom-screenshot.png" width="300">
     </div>
     <div style="overflow: auto;">
@@ -63,10 +65,10 @@ h1 {
 </li>
 
 <li class="skill-item">
-    <div style="float:right"> 
+    <div style="float:right; margin-right: 1em"> 
         <img src="/static/zoom-books.png" width="300">
     </div>
-    <div style="overflow: auto; margin-left: 2em; margin-right: 0">
+    <div style="overflow: auto; margin-left: 2em; margin-right: 0;">
         <a href="/static/books.html"> <h1> Wall of Books</h1> </a>
         <p> A very simple application that presents virtual wall of your reading life. You authorize this app to access your Goodreads account, and it fetches a list of all the books you've read and what you rated them. Then it queries both Goodreads and Google Books for a book cover. The rating you give for the book determines its size.
 
@@ -103,11 +105,11 @@ h1 {
 </li>
 
 <li class="skill-item">
-    <div style="float:left; margin-right: 3em"> 
+    <div style="float:left; margin-right: 3em; margin-left: 2em; margin-bottom: 1em"> 
         <img src="/static/screenshot-magi.png" width="500">
     </div>
     <div style="overflow: auto;">
-        <a href="/parallel-text/text.html"> <h1> Parallel Text Highlighter </h1> </a>
+        <a href="/parallel-text/text.html"> <h1> Parallel Text Reader </h1> </a>
         <p> A small experiment for language learners. A parallel-language text is marked up and the two versions of the text are displayed side by side. When a user mouses over a phrase on one side, the corresponding phrase is highlighted on the other.
 
         <p> I tried to do this to the short story <em>The Gift of the Magi</em> by O. Henry.
@@ -125,6 +127,19 @@ h1 {
 
     </div>
 </li>
+
+<li class="skill-item">
+    <div style="float:left; margin-right: 2em; margin-top: 1em; margin-left: 1em"> 
+        <img src="/static/fsm-screenshot.jpg" width="300">
+    </div>
+    <div style="overflow: auto;">
+        <a href="https://github.com/zodiac/fsm"> <h1> fsm </h1> </a>
+        <p> fsm organizes your music by the folders the audio files actually reside in on disk. Perfect for people whose music does not naturally follow the album/artist organization that most music players rely on. Also takes album art from associated folder.
+
+    </div>
+</li>
+
+
 
 <li class="skill-item">
 <a href="http://stackexchange.com/users/528054">
